@@ -1,6 +1,6 @@
-# movies_app
+# Movies App from The movie database
 
-A new Flutter project.
+A Flutter/Dart project
 
 ## Getting Started
 

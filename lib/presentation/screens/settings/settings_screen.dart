@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/presentation/screens/settings/account_data.dart';
+import 'package:movies_app/presentation/screens/settings/user_card.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -15,35 +17,8 @@ class SettingsScreen extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back)),
       ),
-      body: SizedBox(
-        width: double.maxFinite,
-        child: Card(
-          elevation: 12,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadiusDirectional.all(Radius.circular(20))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircleAvatar(
-                maxRadius: 80,
-                backgroundImage: AssetImage('images/empty_profile.png'),
-              ),
-              const Text(
-                'User name',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              FilledButton(
-                  onPressed: () {}, child: const Text('Iniciar sesión')),
-              const Divider(
-                thickness: 2,
-                color: Color.fromARGB(255, 235, 141, 172),
-              ),
-              const Text('Information of the current user'),
-            ],
-          ),
-        ),
+      body: ListView(
+        children: const [UserCard(), AccountData(account: 'Name of...')],
       ),
     );
   }

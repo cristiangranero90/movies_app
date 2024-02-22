@@ -12,12 +12,12 @@ class ThemeConfig {
 
   ThemeData dark() {
     return ThemeData(
-      useMaterial3: true,
-      colorScheme: const ColorScheme.dark(
-          background: Colors.black12,
-          onBackground: Colors.grey,
-          primary: Colors.pinkAccent,
-          shadow: Colors.pink),
-    );
+        useMaterial3: true,
+        colorScheme: const ColorScheme.dark(
+            background: Colors.black12,
+            onBackground: Colors.grey,
+            primary: Colors.pinkAccent,
+            shadow: Colors.pink),
+        dialogBackgroundColor: const Color.fromARGB(255, 24, 14, 21));
   }
 }

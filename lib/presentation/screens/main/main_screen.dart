@@ -32,27 +32,30 @@ class MainScreen extends StatelessWidget {
             ],
           ),
           bottomNavigationBar: const Bttom(),
-          body: GridView(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, crossAxisSpacing: 1, mainAxisSpacing: 1),
-            controller: scrollController,
-            children: List.generate(
-              moviesProvider.movies.length,
-              (index) => InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MovieDetails(
-                              id: moviesProvider.movies[index].id)));
-                },
-                child: Ink.image(
-                    image: NetworkImage(
-                        'https://image.tmdb.org/t/p/w500/${moviesProvider.movies[index].posterUrl}'),
-                    fit: BoxFit.cover,
-                    onImageError: (object, stackTrace) {
-                      return;
-                    }),
+          body: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: GridView(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, crossAxisSpacing: 1, mainAxisSpacing: 1),
+              controller: scrollController,
+              children: List.generate(
+                moviesProvider.movies.length,
+                (index) => InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MovieDetails(
+                                id: moviesProvider.movies[index].id)));
+                  },
+                  child: Ink.image(
+                      image: NetworkImage(
+                          'https://image.tmdb.org/t/p/w500/${moviesProvider.movies[index].posterUrl}'),
+                      fit: BoxFit.cover,
+                      onImageError: (object, stackTrace) {
+                        return;
+                      }),
+                ),
               ),
             ),
           )),

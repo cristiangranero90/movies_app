@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/config/theme/theme_config.dart';
 import 'package:movies_app/presentation/screens/main/main_screen.dart';
 import 'package:movies_app/presentation/screens/main/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,9 @@ class MovieApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => MoviesProvider())],
       child: MaterialApp(
-        theme: MateTheme(),
+        theme: ThemeConfig().light(),
+        darkTheme: ThemeConfig().dark(),
+        themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         home: const MainScreen(),
       ),

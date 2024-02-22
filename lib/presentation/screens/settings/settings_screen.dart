@@ -17,8 +17,10 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: SizedBox(
         width: double.maxFinite,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+        child: Card(
+          elevation: 12,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadiusDirectional.all(Radius.circular(20))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

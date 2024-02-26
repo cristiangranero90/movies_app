@@ -35,8 +35,9 @@ class MovieWidget extends StatelessWidget {
             return Card(
               elevation: 20,
               shadowColor: Colors.pinkAccent,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 side:
                     BorderSide(color: Color.fromARGB(255, 95, 2, 33), width: 1),
               ),

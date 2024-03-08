@@ -31,6 +31,19 @@ class MovieWidget extends StatelessWidget {
           image: NetworkImage(
               'https://image.tmdb.org/t/p/w500/${movie.posterUrl}'),
           fit: BoxFit.cover,
+          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+            return Card(
+              elevation: 20,
+              shadowColor: Colors.pinkAccent,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                side:
+                    BorderSide(color: Color.fromARGB(255, 95, 2, 33), width: 1),
+              ),
+              child: child,
+            );
+          },
           loadingBuilder: (context, child, loadingProgress) {
             return (loadingProgress != null)
                 ? const Center(
@@ -39,13 +52,9 @@ class MovieWidget extends StatelessWidget {
                 : child;
           },
         ),
-        Container(
-          alignment: Alignment.center,
-          color: Colors.pink[100],
-          child: Text(
-            movie.tittle,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+        Text(
+          movie.tittle,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         Container(
           alignment: Alignment.bottomLeft,
@@ -57,21 +66,36 @@ class MovieWidget extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            IconButton(
-                onPressed: (movieProvider.getFavoriteMovie(movie.id))
-                    ? null
-                    : () => {
-                          movieProvider.insertMovie(movie),
-                          movieProvider.getFavoritesMovies(),
-                          showAdded(context)
-                        },
-                icon: const Icon(Icons.add_outlined),
-                padding: const EdgeInsets.all(0.0)),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.volunteer_activism),
-                padding: const EdgeInsets.all(0.0))
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: (movieProvider.getFavoriteMovie(movie.id))
+                        ? null
+                        : () => {
+                              movieProvider.insertMovie(movie),
+                              movieProvider.getFavoritesMovies(),
+                              showAdded(context)
+                            },
+                    icon: const Icon(Icons.add_outlined),
+                    padding: const EdgeInsets.all(0.0)),
+                const Text('Agregar a favoritos')
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.volunteer_activism),
+                    padding: const EdgeInsets.all(0.0)),
+                const Text('Puntuar')
+              ],
+            ),
           ],
         )
       ],

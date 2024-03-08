@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/presentation/screens/settings/account_data.dart';
+import 'package:movies_app/presentation/screens/settings/user_card.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -15,7 +17,9 @@ class SettingsScreen extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back)),
       ),
-      body: const Placeholder(),
+      body: ListView(
+        children: const [UserCard(), AccountData(account: 'Name of...')],
+      ),
     );
   }
 }

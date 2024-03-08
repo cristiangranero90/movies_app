@@ -14,44 +14,41 @@ class FavoritesScreen extends StatelessWidget {
       provider.getFavoritesMovies();
     }
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Favorites Screen'),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back)),
-        ),
-        body: GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 2,
-          crossAxisSpacing: 2,
-          padding: const EdgeInsets.all(6),
-          children: List.generate(
-              provider.favoritesMovies.length,
-              (index) => InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MovieDetails(
-                                  id: provider.favoritesMovies[index].id)));
-                    },
-                    onLongPress: () async {
-                      final result = showAlertDialog(context);
-                      if (await result) {
-                        provider
-                            .deleteMovie(provider.favoritesMovies[index].id);
-                      }
-                    },
-                    child: Image(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                            'https://image.tmdb.org/t/p/w500/${provider.favoritesMovies[index].posterUrl}')),
-                  )),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Favorites Screen'),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back)),
+      ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 2,
+        crossAxisSpacing: 2,
+        padding: const EdgeInsets.all(6),
+        children: List.generate(
+            provider.favoritesMovies.length,
+            (index) => InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MovieDetails(
+                                id: provider.favoritesMovies[index].id)));
+                  },
+                  onLongPress: () async {
+                    final result = showAlertDialog(context);
+                    if (await result) {
+                      provider.deleteMovie(provider.favoritesMovies[index].id);
+                    }
+                  },
+                  child: Image(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                          'https://image.tmdb.org/t/p/w500/${provider.favoritesMovies[index].posterUrl}')),
+                )),
       ),
     );
   }
@@ -64,6 +61,6 @@ class FavoritesScreen extends StatelessWidget {
         return const FavoritesDialog();
       },
     );
-    return result!;
+    return (result != null) ? result : false;
   }
 }

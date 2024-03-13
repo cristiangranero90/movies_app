@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/model/entities/movie_complete.dart';
+import 'package:movies_app/presentation/screens/main/providers/cast_provider.dart';
 import 'package:movies_app/presentation/screens/movies/movie_details.dart';
+import 'package:provider/provider.dart';
 
 class PopularWidget extends StatelessWidget {
   const PopularWidget(
@@ -16,6 +18,7 @@ class PopularWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final castProvider = context.watch<CastProvider>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,6 +44,7 @@ class PopularWidget extends StatelessWidget {
                         color: Color.fromARGB(255, 95, 2, 33), width: 1)),
                 child: InkWell(
                   onTap: () {
+                    castProvider.getCast(movies[index].id);
                     Navigator.push(
                         context,
                         MaterialPageRoute(

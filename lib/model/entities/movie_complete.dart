@@ -5,6 +5,9 @@ class MovieComplete {
   final String date;
   final String posterUrl;
   final String lang;
+  final double voteAverage;
+  final int voteCount;
+  final bool video;
 
   MovieComplete({
     required this.id,
@@ -13,6 +16,9 @@ class MovieComplete {
     required this.date,
     required this.posterUrl,
     required this.lang,
+    required this.voteAverage,
+    required this.voteCount,
+    required this.video,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,7 +28,10 @@ class MovieComplete {
       'overview': overview,
       'date': date,
       'poster_url': posterUrl,
-      'lang': lang
+      'lang': lang,
+      'voteAverage': voteAverage,
+      'voteCount': voteCount,
+      'video': video
     };
   }
 
@@ -33,6 +42,9 @@ class MovieComplete {
         overview: map['overview'] as String,
         date: map['date'] as String,
         posterUrl: map['poster_url'] as String,
-        lang: map['lang'] as String);
+        lang: map['lang'] as String,
+        voteAverage: map['voteAverage'] as double,
+        voteCount: map['voteCount'] as int,
+        video: map['video'] as bool);
   }
 }

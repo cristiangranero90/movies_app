@@ -110,10 +110,14 @@ class Result {
       };
 
   MovieComplete toMovieComplete() => MovieComplete(
-      id: id,
-      tittle: title,
-      overview: overview,
-      date: releaseDate,
-      posterUrl: posterPath!,
-      lang: 'lang');
+        id: id,
+        tittle: title,
+        overview: overview,
+        date: releaseDate,
+        posterUrl: posterPath!,
+        lang: (originalLanguage.isEmpty) ? '' : originalLanguage,
+        voteAverage: voteAverage,
+        voteCount: voteCount,
+        video: video,
+      );
 }

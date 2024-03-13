@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/presentation/screens/main/popular_widget.dart';
 
 import 'package:movies_app/presentation/screens/main/providers/movies_provider.dart';
-import 'package:movies_app/presentation/screens/movies/movie_details.dart';
 import 'package:movies_app/presentation/shared/bottom_bar.dart';
 import 'package:provider/provider.dart';
 

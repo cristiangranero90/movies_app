@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/presentation/screens/main/providers/cast_provider.dart';
 import 'package:movies_app/presentation/screens/main/providers/movies_provider.dart';
 import 'package:movies_app/presentation/screens/movies/movie_widget.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ class MovieDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final movieProvider = context.watch<MoviesProvider>();
+    final castProvider = context.watch<CastProvider>();
     movieProvider.getMovie(id);
 
     return Scaffold(

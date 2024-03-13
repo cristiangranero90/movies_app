@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/model/entities/movie_complete.dart';
+import 'package:movies_app/presentation/screens/main/providers/cast_provider.dart';
 import 'package:movies_app/presentation/screens/main/providers/movies_provider.dart';
+import 'package:movies_app/presentation/screens/movies/cast_detail.dart';
 import 'package:provider/provider.dart';
 
 class MovieWidget extends StatelessWidget {
@@ -11,6 +13,7 @@ class MovieWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final movieProvider = context.watch<MoviesProvider>();
+    final castProvider = context.watch<CastProvider>();
 
     void showAdded(BuildContext context) {
       final scaffold = ScaffoldMessenger.of(context);
@@ -52,9 +55,48 @@ class MovieWidget extends StatelessWidget {
                 : child;
           },
         ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              child: Row(
+                children: [
+                  const Icon(Icons.calendar_month),
+                  Text(movie.date.toString()),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(Icons.thumb_up),
+                  Text(
+                    movie.voteAverage.toString(),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Row(
+                children: [
+                  const Icon(Icons.group),
+                  Text(movie.voteCount.toString()),
+                ],
+              ),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
         Text(
           movie.tittle,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Container(
           alignment: Alignment.bottomLeft,
@@ -63,6 +105,21 @@ class MovieWidget extends StatelessWidget {
               style:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
         ),
+
+        //Cast Info
+        SizedBox.fromSize(
+          size: const Size(double.maxFinite, 100),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: List.generate(
+                castProvider.castPeople.length,
+                (index) => CastDetail(
+                    image: castProvider.castPeople[index].profilePath,
+                    name: castProvider.castPeople[index].name)),
+          ),
+        ),
+
+        //Favorites buttons
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
